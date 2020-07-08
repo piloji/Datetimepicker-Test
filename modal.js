@@ -46,9 +46,17 @@ $(document).ready(function (){
         minDateTime: dateToday,
         onChangeDateTime: logic,
         step: 15,
-        onSelectTime: function () {
-          this.setOptions({  });
-        },
+        onGenerate:function(ct,$i){
+          var ind = fechas.indexOf(ct.dateFormat('Y/m/d'));
+          $('.xdsoft_time_variant .xdsoft_time').show();
+          if(ind !== -1){
+            $('.xdsoft_time_variant .xdsoft_time').each(function(index){
+              if(tim[ind].indexOf(parseInt($(this).text())) !== -1){
+                $(this).addClass('xdsoft_disabled');
+              }
+            });
+          }
+        }
 
       });
       $.datetimepicker.setLocale('es')
